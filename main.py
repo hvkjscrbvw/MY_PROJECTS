@@ -1,18 +1,17 @@
-import time
-def classic_fizzbuzz(number):
-    if number % 3 == 0 and number % 5 == 0:
-        say = 'FizzBuzz!'
-    elif number % 5 == 0:
-        say = 'Buzz!'
-    elif number % 3 == 0:
-        say = 'Fizz!'
-    else:
-        say = str(number)
+import string
+
+def rot_cipher(text, shift):
+    result = ""
+    for char in text:
+        if char.isalpha():  
+            start = ord('a') if char.islower() else ord('A')
+            shifted_char_code = (ord(char) - start + shift) % 26 + start
+            result += chr(shifted_char_code)
+        else:
+            result += char  
+    return result
     
-    return say
-    
-c=0
-while 1 == 1:
-    print(classic_fizzbuzz(c))
-    c += 1
-    time.sleep(1/10)
+while True:
+    text = input('Text to translate:')
+    shift = int(input('Shift amount; must be a positive integer: '))
+    print(rot_cipher(text, shift))
